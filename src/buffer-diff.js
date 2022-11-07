@@ -15,7 +15,7 @@ export function diff(a , b) {
     indexA = 0,
     indexB = 0;
 
-    while((indexA < lengthA) && (indexB < lengthB)) {
+while((indexA < lengthA) && (indexB < lengthB)) {
         if(a[indexA] === b[indexB]) {
             indexA++;
             indexB++;
