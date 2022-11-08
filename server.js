@@ -10,16 +10,26 @@ const readFiles = async (firstFileName, secondFileName)  => {
 
 const bufCompare = async () => {
     const {input, inputCompare} = await readFiles('input.txt','compare.txt')
-    console.log(input,'\n', inputCompare);
-    console.log(input.equals(inputCompare))
+    console.log(input,'\n', inputCompare,'\n');
+    console.log('рез-т встроенного метода сравнения', input.equals(inputCompare),'\n')
     const changes = diff(input, inputCompare)
-    console.log('changes:', changes)
+    console.log('changes:', changes, '\n')
     const [{index, left, right}] = changes
     console.log('index: ',index)
     console.log('input left: ',left.toString('utf8'))
     console.log('compare right: ',right.toString('utf8'))
+    return {input, inputCompare}
 }
 bufCompare()
+
+const fileSize = async () => {
+const fileStatsAsync = fs.stat('input.txt')
+const fileStats = await fileStatsAsync
+const fileSizeKb = fileStats.size
+const fileSizeMb = fileStats.size / (1024 * 1024)
+return { fileSizeKb , fileSizeMb }
+}
+console.log(`SIZE of input.txt `, await fileSize() )
 
 //const app = express()
 //import { Buffer } from 'node:buffer'
